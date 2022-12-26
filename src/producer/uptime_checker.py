@@ -26,8 +26,7 @@ class UptimeChecker:
             async with self._session.get(site) as response:
                 if response.status != status_code:
                     LOGGER.error(
-                        f"Status code for site "
-                        f"{site} is {response.status}"
+                        f"Status code for site " f"{site} is {response.status}"
                     )
                     return CheckResult(
                         False, f"Unexpected status code: {response.status}"
@@ -35,9 +34,7 @@ class UptimeChecker:
                 if regexp:
                     content = await response.text()
                     if not re.search(regexp, content):
-                        LOGGER.error(
-                            f"Regexp {site} for site {site} not found"
-                        )
+                        LOGGER.error(f"Regexp {site} for site {site} not found")
                         return CheckResult(False, f"Regexp {regexp} not found")
             LOGGER.info(f"Site {site} is up")
 

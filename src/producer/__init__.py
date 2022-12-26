@@ -23,10 +23,7 @@ class PeriodicProducer:
         self._cron_runner = cron_runner
         self._topic = topic
 
-    async def start(
-            self,
-            periodic_checker_inputs: List[PeriodicCheckerInput]
-    ) -> None:
+    async def start(self, periodic_checker_inputs: List[PeriodicCheckerInput]) -> None:
         await self._producer.start()
         for periodic_checker_input in periodic_checker_inputs:
             await self._cron_runner.schedule(

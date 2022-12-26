@@ -55,10 +55,7 @@ class PeriodicChecker:
             cron_runner=cron_runner,
         )
 
-    async def start(
-            self,
-            periodic_checker_inputs: List[PeriodicCheckerInput]
-    ) -> None:
+    async def start(self, periodic_checker_inputs: List[PeriodicCheckerInput]) -> None:
         if not periodic_checker_inputs:
             LOGGER.warning("No checks defined, exiting")
             return
