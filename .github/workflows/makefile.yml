@@ -32,5 +32,5 @@ jobs:
       run: make create_test_environment &&
             sleep 10 &&
             make db_migration &&
-            make check_e2e_tests &&
+            make e2e &&
             make delete_test_environment
