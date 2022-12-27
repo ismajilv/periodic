@@ -21,11 +21,16 @@ delete_test_environment:
 	docker-compose -f docker-compose.test.yml down
 
 
-unittest:
+test_unittest:
 	@echo "Running unittests..."
 	 python3 -m pytest tests/unit
 
 
-e2e:
+test_e2e:
+	@echo "Running unittests..."
+	 python3 -m pytest tests/e2e
+
+
+test_integration:
 	@echo "Running unittests..."
 	 python3 -m pytest tests/e2e
