@@ -4,8 +4,8 @@ from typing import List
 import asyncpg
 from aiohttp import ClientSession
 from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
-from decouple import config
 
+import settings
 from src.common import CronRunner
 from src.consumer import PeriodicConsumer
 from src.entities import PeriodicCheckerInput
@@ -16,36 +16,25 @@ LOGGER = logging.getLogger(__name__)
 
 
 class PeriodicChecker:
-
-    CONFIG: dict = {
-        "kafka": {
-            "topic": config("KAFKA_TOPIC"),
-            "bootstrap_servers": config("KAFKA_BOOTSTRAP_SERVERS"),
-        },
-        "db": {
-            "dsn": config("DB_DSN"),
-        },
-    }
-
     def __init__(self) -> None:
         self._tasks = []
 
         kafka_consumer_client = AIOKafkaConsumer(
-            self.CONFIG["kafka"]["topic"],
-            bootstrap_servers=self.CONFIG["kafka"]["bootstrap_servers"],
+            settings.KAFKA_TOPIC,
+            bootstrap_servers=settings.KAFKA_BOOTSTRAP_SERVERS,
         )
         kafka_producer_client = AIOKafkaProducer(
-            bootstrap_servers=self.CONFIG["kafka"]["bootstrap_servers"],
+            bootstrap_servers=settings.KAFKA_BOOTSTRAP_SERVERS,
         )
         db_connection = asyncpg.connect(
-            dsn=self.CONFIG["db"]["dsn"],
+            dsn=settings.DB_DSN,
         )
         session = ClientSession()
         cron_runner = CronRunner()
 
         self._periodic_producer = PeriodicProducer(
             kafka_producer_client=kafka_producer_client,
-            topic=self.CONFIG["kafka"]["topic"],
+            topic=settings.KAFKA_TOPIC,
             session=session,
             cron_runner=cron_runner,
         )

@@ -108,4 +108,5 @@ periodic (
 - Periodic jobs might be not too precisely periodic due to asyncio nature
 - Create interface to have each DB client implementing its own interface
 - Postgres is hardcoded in the alembic uri. Make it configurable
+- Make logging level configurable
 - Improve this documentation so that it is more enjoyable to read

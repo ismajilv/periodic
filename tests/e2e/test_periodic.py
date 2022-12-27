@@ -4,8 +4,8 @@ from typing import List
 
 import asyncpg
 import pytest
-from decouple import config
 
+import settings
 from src.entities import PeriodicCheckerInput
 from src.periodic import PeriodicChecker
 
@@ -18,7 +18,7 @@ async def periodic_run(input_: List[PeriodicCheckerInput]) -> None:
 @asynccontextmanager
 async def setup_and_cleanup():
     connection = await asyncpg.connect(
-        dsn=config("DB_DSN"),
+        dsn=settings.DB_DSN,
     )
 
     yield connection
