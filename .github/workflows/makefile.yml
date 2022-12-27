@@ -24,3 +24,6 @@ jobs:
 
     - name: Check formatting
       run: make check_formatting
+
+    - name: Check unittest
+      run: make check_unittest
