@@ -26,4 +26,10 @@ jobs:
       run: make check_formatting
 
     - name: Check unittest
-      run: make check_unittest
+      run: make unittest
+
+    - name: Check e2e tests
+      run: make create_test_environment && 
+            make db_migration &&
+            make check_e2e_tests &&
+            make delete_test_environment
