@@ -1,0 +1,36 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python 3.9
+      uses: actions/checkout@v3
+      with:
+        python-version: "3.9"
+
+    - name: Install dependencies
+      run: make install_dependencies
+
+    - name: Check formatting
+      run: make check_formatting
+
+    - name: Check unittest
+      run: make unittest
+
+    - name: Check e2e tests
+      run: make create_test_environment &&
+            sleep 10 &&
+            make db_migration &&
+            make e2e &&
+            make delete_test_environment

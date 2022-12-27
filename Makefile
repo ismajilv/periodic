@@ -16,8 +16,8 @@ create_test_environment:
 	docker-compose -f docker-compose.test.yml up  --build -d
 
 
-docker_stop:
-	@echo "Stopping docker containers..."
+delete_test_environment:
+	@echo "Deleting test environment..."
 	docker-compose -f docker-compose.test.yml down
 
 
