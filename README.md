@@ -20,6 +20,7 @@ optionally checking the returned page contents for a regexp pattern thatis expec
 ## Development
 - [x] There are unit, integration and e2e tests. They use real db and kafka instances running in docker containers. Github actions are integrated to run all these tests on every push to main branch. Other than that with GitHub actions code formatting and linting is also tested. 
 - [x] There is a Makefile to use with GitHub actions and to setup the development environment.
+- [x] All the main components are decoupled and can be run separately. DB writer uses single connection to write bulk data to the database.
 
 Before running the code on your local machine please follow the steps below:
 ```python
