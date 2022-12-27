@@ -15,8 +15,6 @@ optionally checking the returned page contents for a regexp pattern thatis expec
 Example is also given in the root folder of the project. [example.py](example.py)
 
 ```python
-
-```python
 import asyncio
 
 from src.periodic import PeriodicChecker
