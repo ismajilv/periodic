@@ -1,2 +1,9 @@
 # Pycharm
 .idea/
+
+.env
+
+# KAFKA
+service.cert
+service.key
+ca.pem
