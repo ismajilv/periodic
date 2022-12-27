@@ -14,5 +14,5 @@ async def main():
 
 
 loop = asyncio.get_event_loop()
-loop.run_until_complete(main())
+loop.create_task(main())
 loop.run_forever()

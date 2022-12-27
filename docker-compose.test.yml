@@ -9,6 +9,8 @@ services:
     ports:
       - '65432:5432'
 
+  # Taken from: https://vinybrasil.github.io/portfolio/kafkafastapiasync/
+  # Author: Vinícyus Brasil
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     environment:
@@ -17,6 +19,8 @@ services:
     ports:
       - 22181:2181
 
+  # Taken from: https://vinybrasil.github.io/portfolio/kafkafastapiasync/
+  # Author: Vinícyus Brasil
   kafka:
     image: confluentinc/cp-kafka:latest
     depends_on:
