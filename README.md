@@ -7,8 +7,33 @@ The website checker can perform the checks periodically and collect the HTTP  re
 optionally checking the returned page contents for a regexp pattern thatis expected to be found on the page.
 
 [Table of Contents](#table-of-contents)
+ - [Development](#development)
  - [Example usage](#example-usage)
  - [API Reference](#api-reference)
+ - [DB Schema](#db-schema)
+ - [Kafka Schema](#kafka-schema)
+ - [License](#license)
+ - [Feature requests and bugs](#feature-requests-and-bugs)
+
+
+<a name="quickstart"></a>
+## Development
+- [x] There are unit, integration and e2e tests. They use real db and kafka instances running in docker containers. Github actions are integrated to run all these tests on every push to main branch. Other than that with GitHub actions code formatting and linting is also tested. 
+- [x] There is a Makefile to use with GitHub actions and to setup the development environment.
+
+Before running the code on your local machine please follow the steps below:
+```python
+make install_dependencies
+make create_test_environment
+make db_migration
+
+# optionally
+make test_unittest
+make test_integration
+make test_e2e
+
+make delete_test_environment
+```
 
 <a name="example-usage"></a>
 ## Example usage
@@ -48,5 +73,38 @@ Arguments:
     period (Optional[int]): The period in seconds to check the website
 ```
 
+<a name="db-schema"></a>
+## DB schema
+```text
+periodic (
+    sa.Column("id", sa.Integer, primary_key=True),
+    sa.Column("site", sa.String(255), nullable=False),
+    sa.Column("up", sa.BOOLEAN, nullable=True),
+    sa.Column("downtime_reason", sa.String, nullable=True),
+    sa.Column("response_duration", sa.Float, nullable=True),
+    sa.Column("checked_at", sa.DateTime, nullable=False),
+);
+```
+
+<a name="kafka-schema"></a>
+## Kafka schema
+```text
+{
+    "site": "http://www.google.com",
+    "up": true,
+    "downtime_reason": null,
+    "response_duration": 0.123,
+    "checked_at": "2021-05-01 12:00:00"
+}
+```
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
 
+<a name="feature-requests-and-bugs"></a>
+## Feature requests and bugs
+- Periodic jobs might be not too precisely periodic due to asyncio nature
+- Create interface to have each DB client implementing its own interface
+- Postgres is hardcoded in the alembic uri. Make it configurable
+- Improve this documentation so that it is more enjoyable to read
