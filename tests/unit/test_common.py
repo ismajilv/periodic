@@ -21,4 +21,3 @@ class TestQueueExtended(unittest.IsolatedAsyncioTestCase):
 
         # then
         self.assertEqual(messages, [message_1, message_2])
-

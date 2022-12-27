@@ -1,7 +1,7 @@
 check_formatting:
 	@echo "Checking formatting..."
-	black ./src --check
-	flake8 ./src
+	black ./src ./tests --check
+	flake8 ./src ./tests
 
 db_migration:
 	@echo "Creating migration..."
@@ -13,4 +13,19 @@ create_test_environment:
 
 unittest:
 	@echo "Running unittests..."
-	python -m unittest discover -s tests
+	 python3 -m pytest tests/unit
+
+
+e2e:
+	@echo "Running unittests..."
+	 python3 -m pytest tests/e2e
+
+
+docker_start:
+	@echo "Starting docker containers..."
+	docker-compose -f docker-compose.test.yml up -d --build
+
+
+docker_stop:
+	@echo "Stopping docker containers..."
+	docker-compose -f docker-compose.test.yml down

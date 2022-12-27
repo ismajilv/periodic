@@ -17,12 +17,12 @@ class TestKafkaConsumer(unittest.IsolatedAsyncioTestCase):
     async def test_start(self) -> None:
         # given
         kafka_message = AsyncMock(
-            value=b'{'
-                  b'"site": "http://example.com",'
-                  b'"checked_at": "2020-01-01T00:00:00",'
-                  b'"up": false,'
-                  b'"downtime_reason": "ConnectionError"'
-                  b'}'
+            value=b"{"
+            b'"site": "http://example.com",'
+            b'"checked_at": "2020-01-01T00:00:00",'
+            b'"up": false,'
+            b'"downtime_reason": "ConnectionError"'
+            b"}"
         )
         self.kafka_consumer.__aiter__.return_value = [kafka_message]
 
@@ -32,9 +32,9 @@ class TestKafkaConsumer(unittest.IsolatedAsyncioTestCase):
         # then
         self.callback.assert_called_once_with(
             Message(
-                site='http://example.com',
+                site="http://example.com",
                 checked_at=datetime(2020, 1, 1, 0, 0),
                 up=False,
-                downtime_reason="ConnectionError"
+                downtime_reason="ConnectionError",
             )
         )

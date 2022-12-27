@@ -39,5 +39,5 @@ class TestKafkaProducer(unittest.IsolatedAsyncioTestCase):
             topic,
             b'{"site": "http://example.com", "up": true, '
             b'"downtime_reason": null, '
-            b'"checked_at": "2020-01-01T00:00:00"}'
+            b'"checked_at": "2020-01-01T00:00:00"}',
         )
