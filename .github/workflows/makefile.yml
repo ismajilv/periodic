@@ -29,7 +29,8 @@ jobs:
       run: make unittest
 
     - name: Check e2e tests
-      run: make create_test_environment && 
+      run: make create_test_environment &&
+            sleep 10 &&
             make db_migration &&
             make check_e2e_tests &&
             make delete_test_environment
