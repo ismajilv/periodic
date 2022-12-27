@@ -65,6 +65,16 @@ loop = asyncio.get_event_loop()
 loop.create_task(main())
 loop.run_forever()
 ```
+**Logs**
+
+```python
+INFO:src.producer.uptime_checker:Checking https://www.google.com
+INFO:aiokafka.consumer.group_coordinator:Metadata for topic has changed from {} to {'mytopic': 1}. 
+INFO:src.producer.uptime_checker:Site https://www.google.com is up
+INFO:src.producer.kafka_producer:Producing b'{"site": "https://www.google.com", "up": true, "downtime_reason": null, "response_duration": 0.37, "checked_at": "2022-12-27T21:24:09.922928"}' to mytopic
+INFO:src.consumer.kafka_consumer:Consuming message ConsumerRecord(topic='mytopic', partition=0, offset=43, timestamp=1672176249923, timestamp_type=0, key=None, value=b'{"site": "https://www.google.com", "up": true, "downtime_reason": null, "response_duration": 0.37, "checked_at": "2022-12-27T21:24:09.922928"}', checksum=None, serialized_key_size=-1, serialized_value_size=142, headers=()) from Kafka
+INFO:src.consumer.db_writer:Successfully inserted all messages from queue to DB
+```
 
 <a name="api-reference"></a>
 ## API reference
