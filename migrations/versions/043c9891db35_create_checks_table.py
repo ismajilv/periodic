@@ -23,6 +23,7 @@ def upgrade() -> None:
         sa.Column("site", sa.String(255), nullable=False),
         sa.Column("up", sa.BOOLEAN, nullable=True),
         sa.Column("downtime_reason", sa.String, nullable=True),
+        sa.Column("response_duration", sa.Float, nullable=True),
         sa.Column("checked_at", sa.DateTime, nullable=False),
     )
 

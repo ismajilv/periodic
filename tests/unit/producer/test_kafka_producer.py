@@ -29,6 +29,7 @@ class TestKafkaProducer(unittest.IsolatedAsyncioTestCase):
             checked_at=datetime_,
             up=True,
             downtime_reason=None,
+            response_duration=0.1,
         )
 
         # when
@@ -39,5 +40,6 @@ class TestKafkaProducer(unittest.IsolatedAsyncioTestCase):
             topic,
             b'{"site": "http://example.com", "up": true, '
             b'"downtime_reason": null, '
+            b'"response_duration": 0.1, '
             b'"checked_at": "2020-01-01T00:00:00"}',
         )

@@ -11,6 +11,7 @@ class Message:
     checked_at: datetime
     up: Optional[bool] = None
     downtime_reason: Optional[str] = None
+    response_duration: Optional[float] = None
 
     def to_jsonb(self) -> bytes:
         return json.dumps(
@@ -18,6 +19,7 @@ class Message:
                 "site": self.site,
                 "up": self.up,
                 "downtime_reason": self.downtime_reason,
+                "response_duration": self.response_duration,
                 "checked_at": self.checked_at.isoformat(),
             }
         ).encode("utf-8")
@@ -43,3 +45,4 @@ class PeriodicCheckerInput:
 class CheckResult:
     up: bool
     downtime_reason: Optional[str] = None
+    response_duration: Optional[float] = None

@@ -47,5 +47,6 @@ class PeriodicProducer:
             checked_at=datetime.utcnow(),
             site=site,
             downtime_reason=check_result.downtime_reason,
+            response_duration=check_result.response_duration,
         )
         await self._producer.produce(self._topic, message)

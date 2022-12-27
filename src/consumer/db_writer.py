@@ -11,9 +11,9 @@ LOGGER = logging.getLogger(__name__)
 
 INSERT_CHECK_QUERY = """
 INSERT INTO
-    checks (site, up, downtime_reason, checked_at)
+    checks (site, up, downtime_reason, response_duration, checked_at)
 VALUES
-    ($1, $2, $3, $4)
+    ($1, $2, $3, $4, $5)
 """
 
 
@@ -36,6 +36,7 @@ class DBWriter(QueueBasedWorker):
                     message.site,
                     message.up,
                     message.downtime_reason,
+                    message.response_duration,
                     message.checked_at,
                 )
                 insert_values.append(insert_value)

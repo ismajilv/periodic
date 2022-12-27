@@ -25,7 +25,9 @@ class TestDBWriter(unittest.IsolatedAsyncioTestCase):
     async def test_start_with_message(self) -> None:
         # given
         datetime_ = datetime(2020, 1, 1, 0, 0, 0)
-        message = Message(site="http://example.com", checked_at=datetime_)
+        message = Message(
+            site="http://example.com", response_duration=0.1, checked_at=datetime_
+        )
         self.db_writer.get_all = AsyncMock(return_value=[message])
 
         # when
@@ -33,5 +35,5 @@ class TestDBWriter(unittest.IsolatedAsyncioTestCase):
 
         # then
         self.connection.executemany.assert_awaited_once_with(
-            INSERT_CHECK_QUERY, [("http://example.com", None, None, datetime_)]
+            INSERT_CHECK_QUERY, [("http://example.com", None, None, 0.1, datetime_)]
         )
