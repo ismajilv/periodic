@@ -9,7 +9,7 @@ install_dependencies:
 
 db_migration:
 	@echo "Creating migration..."
-	cd migrations && alembic upgrade head
+	alembic -c ./migrations/alembic.ini upgrade head
 
 create_test_environment:
 	@echo "Creating test environment..."

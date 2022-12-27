@@ -36,6 +36,9 @@ make test_e2e
 make delete_test_environment
 ```
 
+### To run in production environment
+Copy the .env.example file to .env and fill in the required values
+
 <a name="example-usage"></a>
 ## Example usage
 Example is also given in the root folder of the project. [example.py](example.py)
