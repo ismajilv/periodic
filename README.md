@@ -118,8 +118,8 @@ periodic (
 
 <a name="feature-requests-and-bugs"></a>
 ## Feature requests and bugs
-- Periodic jobs might be not too precisely periodic due to asyncio nature
-- Create interface to have each DB client implementing its own interface
-- Postgres is hardcoded in the alembic uri. Make it configurable
-- Make logging level configurable
-- Improve this documentation so that it is more enjoyable to read
+- [ ] Periodic jobs might be not too precisely periodic due to asyncio nature
+- [ ] Create interface to have each DB client implementing its own interface
+- [x] Postgres is hardcoded in the alembic uri. Make it configurable <span style="color:green">**DONE**</span>
+- [ ] Make logging level configurable
+- [ ] Improve this documentation so that it is more enjoyable to read
