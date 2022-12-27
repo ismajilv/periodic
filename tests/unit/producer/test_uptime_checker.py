@@ -26,6 +26,7 @@ class TestUptimeChecker(unittest.IsolatedAsyncioTestCase):
         # then
         self.assertTrue(result.up)
         self.assertIsNone(result.downtime_reason)
+        self.assertIsNotNone(result.response_duration)
 
     @aioresponses()
     async def test_check_success_regexp(self, mock_aioresponse) -> None:
@@ -40,6 +41,7 @@ class TestUptimeChecker(unittest.IsolatedAsyncioTestCase):
         # then
         self.assertTrue(result.up)
         self.assertIsNone(result.downtime_reason)
+        self.assertIsNotNone(result.response_duration)
 
     @aioresponses()
     async def test_check_failure_status_code(self, mock_aioresponse) -> None:
@@ -53,6 +55,7 @@ class TestUptimeChecker(unittest.IsolatedAsyncioTestCase):
         # then
         self.assertFalse(result.up)
         self.assertEqual(result.downtime_reason, "Unexpected status code: 500")
+        self.assertIsNotNone(result.response_duration)
 
     @aioresponses()
     async def test_check_failure_regexp(self, mock_aioresponse) -> None:
@@ -67,6 +70,7 @@ class TestUptimeChecker(unittest.IsolatedAsyncioTestCase):
         # then
         self.assertFalse(result.up)
         self.assertEqual(result.downtime_reason, "Regexp ANY not found")
+        self.assertIsNotNone(result.response_duration)
 
     @aioresponses()
     async def test_check_failure_any_exception(self, mock_aioresponse) -> None:
@@ -80,3 +84,4 @@ class TestUptimeChecker(unittest.IsolatedAsyncioTestCase):
         # then
         self.assertFalse(result.up)
         self.assertEqual(result.downtime_reason, "Unknown error")
+        self.assertIsNone(result.response_duration)

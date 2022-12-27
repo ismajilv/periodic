@@ -6,7 +6,7 @@ from src.entities import PeriodicCheckerInput
 
 async def main():
     input_ = PeriodicCheckerInput(
-        site="https://testt.free.asdasdasd.com",
+        site="https://www.google.com",
         period=2
     )
 

@@ -12,12 +12,14 @@ class TestMessage(unittest.TestCase):
             b'{"site": "http://example.com", '
             b'"up": true, '
             b'"downtime_reason": "Error", '
+            b'"response_duration": 0.1, '
             b'"checked_at": "2020-01-01T00:00:00"}'
         )
         self.message = Message(
             site="http://example.com",
             up=True,
             downtime_reason="Error",
+            response_duration=0.1,
             checked_at=datetime_,
         )
 
